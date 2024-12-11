@@ -55,7 +55,7 @@
 	 // Checks if the given word is in the dictionary.
 	 public static boolean isWordInDictionary(String word) {
 		 for(int i = 0; i < DICTIONARY.length; i++) {
-			 if(word.toLowerCase().equals(DICTIONARY[i])) {
+			 if(word.equals(DICTIONARY[i])) {
 				 return true;
 			 }
 		 }
@@ -112,6 +112,7 @@
 			 if(isWordInDictionary(input) && MyString.subsetOf(input, hand)) {
 				 hand = MyString.remove(hand, input);
 				 score+= wordScore(input);
+				 System.out.println(input + " earned " + wordScore(input) + " points. Score: " + score + " points");
 			 }
  
 			 break;
@@ -185,7 +186,8 @@
 		 // testScrabbleScore();    
 		 ////testCreateHands();  
 		 // testPlayHands();
-		 playGame();
+		//  testIsWordInDictionary();
+		//  playGame();
 	 }
  
 	 public static void testBuildingTheDictionary() {
@@ -209,6 +211,20 @@
 		 System.out.println(createHand());
 		 System.out.println(createHand());
 	 }
+
+	 public static void testIsWordInDictionary() {
+		try {
+			System.out.println("'' -> " + Scrabble.isWordInDictionary("") + " (expected: false)");
+			System.out.println("'CAT' -> " + Scrabble.isWordInDictionary("CAT") + " (expected: false)");
+			System.out.println("'xyz123' -> " + Scrabble.isWordInDictionary("xyz123") + " (expected: false)");
+			System.out.println("'qwxz' -> " + Scrabble.isWordInDictionary("qwxz") + " (expected: false)");
+		} catch (Exception e) {
+			System.err.println("Error during test execution: " + e.getMessage());
+			e.printStackTrace();
+		}
+	}
+	 
+	 
 	 public static void testPlayHands() {
 		 init();
 		 playHand("ocostrza");
